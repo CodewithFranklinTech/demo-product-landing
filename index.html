@@ -4,28 +4,38 @@
 <head>
   <title>Demo Product Landing Page</title>
 
-  <!-- Amplitude SDK -->
+  <!-- Amplitude SDK (correct version) -->
   <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.0-min.js.gz"></script>
   <script>
-    window.amplitude.init("98c79f3d77f828118a4ea6d2ca65d9f3");
+    window.amplitude = window.amplitude || {};
+    amplitude.init("98c79f3d77f828118a4ea6d2ca65d9f3", {
+      defaultTracking: true
+    });
   </script>
 </head>
 
 <body style="text-align:center; font-family: Arial; padding:50px;">
 
   <h1>Welcome to My Demo Product</h1>
-
   <p>This page is used for product analytics testing.</p>
 
-  <button onclick="amplitude.track('sign_up_click')">
-    Sign Up
-  </button>
+  <button onclick="trackSignUp()">Sign Up</button>
 
   <br><br>
 
-  <button onclick="amplitude.track('request_demo_click')">
-    Request Demo
-  </button>
+  <button onclick="trackDemo()">Request Demo</button>
+
+  <script>
+    function trackSignUp() {
+      amplitude.logEvent('sign_up_click');
+      alert('Sign Up Clicked');
+    }
+
+    function trackDemo() {
+      amplitude.logEvent('request_demo_click');
+      alert('Request Demo Clicked');
+    }
+  </script>
 
 </body>
 </html>
