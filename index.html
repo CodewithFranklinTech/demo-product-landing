@@ -4,13 +4,21 @@
 <head>
   <title>Demo Product Landing Page</title>
 
-  <!-- Amplitude SDK (correct version) -->
+  <!-- Correct Amplitude SDK -->
   <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.0-min.js.gz"></script>
   <script>
-    window.amplitude = window.amplitude || {};
-    amplitude.init("98c79f3d77f828118a4ea6d2ca65d9f3", {
-      defaultTracking: true
-    });
+    window.amplitude = window.amplitude || [];
+    amplitude._q = amplitude._q || [];
+
+    amplitude.init = function(apiKey){
+      amplitude._q.push(["init", apiKey]);
+    };
+
+    amplitude.track = function(eventName){
+      amplitude._q.push(["track", eventName]);
+    };
+
+    amplitude.init("98c79f3d77f828118a4ea6d2ca65d9f3");
   </script>
 </head>
 
@@ -27,13 +35,13 @@
 
   <script>
     function trackSignUp() {
-      amplitude.logEvent('sign_up_click');
-      alert('Sign Up Clicked');
+      amplitude.track("sign_up_click");
+      alert("Sign Up Clicked");
     }
 
     function trackDemo() {
-      amplitude.logEvent('request_demo_click');
-      alert('Request Demo Clicked');
+      amplitude.track("request_demo_click");
+      alert("Request Demo Clicked");
     }
   </script>
 
