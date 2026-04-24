@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Demo Product Landing Page</title>
+
+  <!-- Amplitude SDK -->
+  <script src="https://cdn.amplitude.com/libs/analytics-browser-2.11.0-min.js.gz"></script>
+  <script>
+    window.amplitude.init("98c79f3d77f828118a4ea6d2ca65d9f3");
+  </script>
 </head>
 
 <body style="text-align:center; font-family: Arial; padding:50px;">
@@ -10,13 +17,13 @@
 
   <p>This page is used for product analytics testing.</p>
 
-  <button onclick="console.log('sign_up_click')">
+  <button onclick="amplitude.track('sign_up_click')">
     Sign Up
   </button>
 
   <br><br>
 
-  <button onclick="console.log('request_demo_click')">
+  <button onclick="amplitude.track('request_demo_click')">
     Request Demo
   </button>
 
